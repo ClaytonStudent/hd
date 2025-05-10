@@ -24,7 +24,23 @@ SECRET_KEY = '!_7vn6-&eqzf1d6g$c*tfgrags)=#!o2_!5r4l7qq!+=qv3h(s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+# Add your Azure domain to trusted origins
+CSRF_TRUSTED_ORIGINS = [
+    'https://hdgroup-b2d7bsg6dqhwbecx.westeurope-01.azurewebsites.net',
+    'http://localhost:8000',
+    'http://127.0.0.1:8000',
+]
 
+# CSRF settings
+CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_HTTPONLY = True
+CSRF_COOKIE_SAMESITE = 'Lax'
+CSRF_USE_SESSIONS = True
+
+# Session settings
+SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_HTTPONLY = True
+SESSION_COOKIE_SAMESITE = 'Lax'
 ALLOWED_HOSTS = ['*']
 
 
