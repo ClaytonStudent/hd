@@ -39,7 +39,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: django-app
+          name: release-zip
           path: release.zip
 
   deploy:
@@ -50,10 +50,10 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
-          name: django-app
+          name: release-zip
 
-      - name: Move release.zip
-        run: mv django-app/release.zip .
+      - name: List files (debug)
+        run: ls -la
 
       - name: Azure Login
         uses: azure/login@v2
@@ -65,7 +65,7 @@ jobs:
       - name: Deploy app using zip
         run: |
           az webapp deploy \
-            --resource-group <YOUR_RESOURCE_GROUP> \
+            --resource-group hd \
             --name hdgroup \
             --src-path release.zip \
             --type zip
